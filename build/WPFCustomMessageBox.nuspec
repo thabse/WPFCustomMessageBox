@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
-        <id>WPFCustomMessageBox</id>
-        <version>1.0.7</version>
+        <id>WPFCustomMessageBox.thabse</id>
+        <version>1.0.8</version>
         <title>WPF Custom MessageBox</title>
-        <authors>Evan Wondrasek / Apricity Software LLC</authors>
-        <licenseUrl>https://github.com/evanwon/WPFCustomMessageBox/blob/master/README.md</licenseUrl>
+        <authors>Thomas Absenger / Evan Wondrasek / Apricity Software LLC</authors>
+        <licenseUrl>https://github.com/thabse/WPFCustomMessageBox/blob/master/LICENSE</licenseUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>A WPF clone of the native Windows/.NET MessageBox with extra features like custom button text.</description>
         <summary />
-        <releaseNotes>Added XML documentation file for IntelliSense</releaseNotes>
-        <copyright>Evan Wondrasek / Apricity Software LLC</copyright>
+        <releaseNotes>Extended with window owner</releaseNotes>
+        <copyright>Thomas Absenger / Evan Wondrasek / Apricity Software LLC</copyright>
         <language>en-US</language>
         <tags>wpf messagebox</tags>
         <frameworkAssemblies>

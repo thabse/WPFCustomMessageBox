@@ -19,6 +19,8 @@ This documentation is still in progress, so in the meantime you can explore the 
 
 WPFCustomMessageBox uses static methods just like the standard .NET MessageBox, so you can plug-and-play the new library without modifying any code. When you want to add custom text, just use the special methods outlined below.
 
+Note that when providing a `System.Windows.Window` owner for a message box, the behavior of this message box is not identical to the standard .NET MessageBox.
+
 **Standard .NET Message Box**
 
 
@@ -64,6 +66,8 @@ The WPFCustomMessageBox library provides customizable equivalents of all .NET Me
 ## License ##
 
 **The MIT License**
+
+Copyright (c) 2021 Thomas Absenger
 
 Copyright (c) 2013 Evan Wondrasek / Apricity Software LLC
 
