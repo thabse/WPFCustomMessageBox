@@ -87,6 +87,23 @@ namespace WPFCustomMessageBox
         }
 
         /// <summary>
+        /// Displays a message box that has a message, title bar caption, and button; and that returns a result.
+        /// </summary>
+        /// <param name="owner">A System.Windows.Window that represents the owner window of the message box.</param>
+        /// <param name="messageBoxText">A System.String that specifies the text to display.</param>
+        /// <param name="caption">A System.String that specifies the title bar caption to display.</param>
+        /// <param name="button">A System.Windows.MessageBoxButton value that specifies which button or buttons to display.</param>
+        /// <returns>A System.Windows.MessageBoxResult value that specifies which message box button is clicked by the user.</returns>
+        public static MessageBoxResult Show(Window owner, string messageBoxText, string caption, MessageBoxButton button)
+        {
+            CustomMessageBoxWindow msg = new CustomMessageBoxWindow(messageBoxText, caption, button);
+            msg.Owner = owner;
+            msg.ShowDialog();
+
+            return msg.Result;
+        }
+
+        /// <summary>
         /// Displays a message box that has a message, title bar caption, button, and icon; and that returns a result.
         /// </summary>
         /// <param name="messageBoxText">A System.String that specifies the text to display.</param>
@@ -103,6 +120,24 @@ namespace WPFCustomMessageBox
         }
 
         /// <summary>
+        /// Displays a message box that has a message, title bar caption, button, and icon; and that returns a result.
+        /// </summary>
+        /// <param name="owner">A System.Windows.Window that represents the owner window of the message box.</param>
+        /// <param name="messageBoxText">A System.String that specifies the text to display.</param>
+        /// <param name="caption">A System.String that specifies the title bar caption to display.</param>
+        /// <param name="button">A System.Windows.MessageBoxButton value that specifies which button or buttons to display.</param>
+        /// <param name="icon">A System.Windows.MessageBoxImage value that specifies the icon to display.</param>
+        /// <returns>A System.Windows.MessageBoxResult value that specifies which message box button is clicked by the user.</returns>
+        public static MessageBoxResult Show(Window owner, string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon)
+        {
+            CustomMessageBoxWindow msg = new CustomMessageBoxWindow(messageBoxText, caption, button, icon);
+            msg.Owner = owner;
+            msg.ShowDialog();
+
+            return msg.Result;
+        }
+
+        /// <summary>
         /// Displays a message box that has a message, title bar caption, and OK button with a custom System.String value for the button's text; and that returns a result.
         /// </summary>
         /// <param name="messageBoxText">A System.String that specifies the text to display.</param>
@@ -111,12 +146,20 @@ namespace WPFCustomMessageBox
         /// <returns>A System.Windows.MessageBoxResult value that specifies which message box button is clicked by the user.</returns>
         public static MessageBoxResult ShowOK(string messageBoxText, string caption, string okButtonText)
         {
-            CustomMessageBoxWindow msg = new CustomMessageBoxWindow(messageBoxText, caption, MessageBoxButton.OK);
-            msg.OkButtonText = okButtonText;
+            return ShowOKMessage(null, messageBoxText, caption, okButtonText, null, null);
+        }
 
-            msg.ShowDialog();
-            
-            return msg.Result;
+        /// <summary>
+        /// Displays a message box that has a message, title bar caption, and OK button with a custom System.String value for the button's text; and that returns a result.
+        /// </summary>
+        /// <param name="owner">A System.Windows.Window that represents the owner window of the message box.</param>
+        /// <param name="messageBoxText">A System.String that specifies the text to display.</param>
+        /// <param name="caption">A System.String that specifies the title bar caption to display.</param>
+        /// <param name="okButtonText">A System.String that specifies the text to display within the OK button.</param>
+        /// <returns>A System.Windows.MessageBoxResult value that specifies which message box button is clicked by the user.</returns>
+        public static MessageBoxResult ShowOK(Window owner, string messageBoxText, string caption, string okButtonText)
+        {
+            return ShowOKMessage(owner, messageBoxText, caption, okButtonText, null, null);
         }
 
         /// <summary>
@@ -129,12 +172,21 @@ namespace WPFCustomMessageBox
         /// <returns>A System.Windows.MessageBoxResult value that specifies which message box button is clicked by the user.</returns>
         public static MessageBoxResult ShowOK(string messageBoxText, string caption, string okButtonText, MessageBoxImage icon)
         {
-            CustomMessageBoxWindow msg = new CustomMessageBoxWindow(messageBoxText, caption, MessageBoxButton.OK, icon);
-            msg.OkButtonText = okButtonText;
+            return ShowOKMessage(null, messageBoxText, caption, okButtonText, null, icon);
+        }
 
-            msg.ShowDialog();
-
-            return msg.Result;
+        /// <summary>
+        /// Displays a message box that has a message, title bar caption, OK button with a custom System.String value for the button's text, and icon; and that returns a result.
+        /// </summary>
+        /// <param name="owner">A System.Windows.Window that represents the owner window of the message box.</param>
+        /// <param name="messageBoxText">A System.String that specifies the text to display.</param>
+        /// <param name="caption">A System.String that specifies the title bar caption to display.</param>
+        /// <param name="okButtonText">A System.String that specifies the text to display within the OK button.</param>
+        /// <param name="icon">A System.Windows.MessageBoxImage value that specifies the icon to display.</param>
+        /// <returns>A System.Windows.MessageBoxResult value that specifies which message box button is clicked by the user.</returns>
+        public static MessageBoxResult ShowOK(Window owner, string messageBoxText, string caption, string okButtonText, MessageBoxImage icon)
+        {
+            return ShowOKMessage(owner, messageBoxText, caption, okButtonText, null, icon);
         }
 
         /// <summary>
@@ -148,13 +200,22 @@ namespace WPFCustomMessageBox
         /// <returns>A System.Windows.MessageBoxResult value that specifies which message box button is clicked by the user.</returns>
         public static MessageBoxResult ShowOKCancel(string messageBoxText, string caption, string okButtonText, string cancelButtonText)
         {
-            CustomMessageBoxWindow msg = new CustomMessageBoxWindow(messageBoxText, caption, MessageBoxButton.OKCancel);
-            msg.OkButtonText = okButtonText;
-            msg.CancelButtonText = cancelButtonText;
+            return ShowOKMessage(null, messageBoxText, caption, okButtonText, cancelButtonText, null);
+        }
 
-            msg.ShowDialog();
-            
-            return msg.Result;
+        /// <summary>
+        /// Displays a message box that has a message, caption, and OK/Cancel buttons with custom System.String values for the buttons' text;
+        /// and that returns a result.
+        /// </summary>
+        /// <param name="owner">A System.Windows.Window that represents the owner window of the message box.</param>
+        /// <param name="messageBoxText">A System.String that specifies the text to display.</param>
+        /// <param name="caption">A System.String that specifies the title bar caption to display.</param>
+        /// <param name="okButtonText">A System.String that specifies the text to display within the OK button.</param>
+        /// <param name="cancelButtonText">A System.String that specifies the text to display within the Cancel button.</param>
+        /// <returns>A System.Windows.MessageBoxResult value that specifies which message box button is clicked by the user.</returns>
+        public static MessageBoxResult ShowOKCancel(Window owner, string messageBoxText, string caption, string okButtonText, string cancelButtonText)
+        {
+            return ShowOKMessage(owner, messageBoxText, caption, okButtonText, cancelButtonText, null);
         }
 
         /// <summary>
@@ -169,13 +230,23 @@ namespace WPFCustomMessageBox
         /// <returns>A System.Windows.MessageBoxResult value that specifies which message box button is clicked by the user.</returns>
         public static MessageBoxResult ShowOKCancel(string messageBoxText, string caption, string okButtonText, string cancelButtonText, MessageBoxImage icon)
         {
-            CustomMessageBoxWindow msg = new CustomMessageBoxWindow(messageBoxText, caption, MessageBoxButton.OKCancel, icon);
-            msg.OkButtonText = okButtonText;
-            msg.CancelButtonText = cancelButtonText;
+            return ShowOKMessage(null, messageBoxText, caption, okButtonText, cancelButtonText, icon);
+        }
 
-            msg.ShowDialog();
-
-            return msg.Result;
+        /// <summary>
+        /// Displays a message box that has a message, caption, OK/Cancel buttons with custom System.String values for the buttons' text, and icon;
+        /// and that returns a result.
+        /// </summary>
+        /// <param name="owner">A System.Windows.Window that represents the owner window of the message box.</param>
+        /// <param name="messageBoxText">A System.String that specifies the text to display.</param>
+        /// <param name="caption">A System.String that specifies the title bar caption to display.</param>
+        /// <param name="okButtonText">A System.String that specifies the text to display within the OK button.</param>
+        /// <param name="cancelButtonText">A System.String that specifies the text to display within the Cancel button.</param>
+        /// <param name="icon">A System.Windows.MessageBoxImage value that specifies the icon to display.</param>
+        /// <returns>A System.Windows.MessageBoxResult value that specifies which message box button is clicked by the user.</returns>
+        public static MessageBoxResult ShowOKCancel(Window owner, string messageBoxText, string caption, string okButtonText, string cancelButtonText, MessageBoxImage icon)
+        {
+            return ShowOKMessage(owner, messageBoxText, caption, okButtonText, cancelButtonText, icon);
         }
 
         /// <summary>
@@ -189,13 +260,22 @@ namespace WPFCustomMessageBox
         /// <returns>A System.Windows.MessageBoxResult value that specifies which message box button is clicked by the user.</returns>
         public static MessageBoxResult ShowYesNo(string messageBoxText, string caption, string yesButtonText, string noButtonText)
         {
-            CustomMessageBoxWindow msg = new CustomMessageBoxWindow(messageBoxText, caption, MessageBoxButton.YesNo);
-            msg.YesButtonText = yesButtonText;
-            msg.NoButtonText = noButtonText;
+            return ShowYesNoMessage(null, messageBoxText, caption, yesButtonText, noButtonText, null, null);
+        }
 
-            msg.ShowDialog();
-
-            return msg.Result;
+        /// <summary>
+        /// Displays a message box that has a message, caption, and Yes/No buttons with custom System.String values for the buttons' text;
+        /// and that returns a result.
+        /// </summary>
+        /// <param name="owner">A System.Windows.Window that represents the owner window of the message box.</param>
+        /// <param name="messageBoxText">A System.String that specifies the text to display.</param>
+        /// <param name="caption">A System.String that specifies the title bar caption to display.</param>
+        /// <param name="yesButtonText">A System.String that specifies the text to display within the Yes button.</param>
+        /// <param name="noButtonText">A System.String that specifies the text to display within the No button.</param>
+        /// <returns>A System.Windows.MessageBoxResult value that specifies which message box button is clicked by the user.</returns>
+        public static MessageBoxResult ShowYesNo(Window owner, string messageBoxText, string caption, string yesButtonText, string noButtonText)
+        {
+            return ShowYesNoMessage(owner, messageBoxText, caption, yesButtonText, noButtonText, null, null);
         }
 
         /// <summary>
@@ -210,13 +290,23 @@ namespace WPFCustomMessageBox
         /// <returns>A System.Windows.MessageBoxResult value that specifies which message box button is clicked by the user.</returns>
         public static MessageBoxResult ShowYesNo(string messageBoxText, string caption, string yesButtonText, string noButtonText, MessageBoxImage icon)
         {
-            CustomMessageBoxWindow msg = new CustomMessageBoxWindow(messageBoxText, caption, MessageBoxButton.YesNo, icon);
-            msg.YesButtonText = yesButtonText;
-            msg.NoButtonText = noButtonText;
+            return ShowYesNoMessage(null, messageBoxText, caption, yesButtonText, noButtonText, null, icon);
+        }
 
-            msg.ShowDialog();
-
-            return msg.Result;
+        /// <summary>
+        /// Displays a message box that has a message, caption, Yes/No buttons with custom System.String values for the buttons' text, and icon;
+        /// and that returns a result.
+        /// </summary>
+        /// <param name="owner">A System.Windows.Window that represents the owner window of the message box.</param>
+        /// <param name="messageBoxText">A System.String that specifies the text to display.</param>
+        /// <param name="caption">A System.String that specifies the title bar caption to display.</param>
+        /// <param name="yesButtonText">A System.String that specifies the text to display within the Yes button.</param>
+        /// <param name="noButtonText">A System.String that specifies the text to display within the No button.</param>
+        /// <param name="icon">A System.Windows.MessageBoxImage value that specifies the icon to display.</param>
+        /// <returns>A System.Windows.MessageBoxResult value that specifies which message box button is clicked by the user.</returns>
+        public static MessageBoxResult ShowYesNo(Window owner, string messageBoxText, string caption, string yesButtonText, string noButtonText, MessageBoxImage icon)
+        {
+            return ShowYesNoMessage(owner, messageBoxText, caption, yesButtonText, noButtonText, null, icon);
         }
 
         /// <summary>
@@ -231,14 +321,23 @@ namespace WPFCustomMessageBox
         /// <returns>A System.Windows.MessageBoxResult value that specifies which message box button is clicked by the user.</returns>
         public static MessageBoxResult ShowYesNoCancel(string messageBoxText, string caption, string yesButtonText, string noButtonText, string cancelButtonText)
         {
-            CustomMessageBoxWindow msg = new CustomMessageBoxWindow(messageBoxText, caption, MessageBoxButton.YesNoCancel);
-            msg.YesButtonText = yesButtonText;
-            msg.NoButtonText = noButtonText;
-            msg.CancelButtonText = cancelButtonText;
+            return ShowYesNoMessage(null, messageBoxText, caption, yesButtonText, noButtonText, cancelButtonText, null);
+        }
 
-            msg.ShowDialog();
-
-            return msg.Result;
+        /// <summary>
+        /// Displays a message box that has a message, caption, and Yes/No/Cancel buttons with custom System.String values for the buttons' text;
+        /// and that returns a result.
+        /// </summary>
+        /// <param name="owner">A System.Windows.Window that represents the owner window of the message box.</param>
+        /// <param name="messageBoxText">A System.String that specifies the text to display.</param>
+        /// <param name="caption">A System.String that specifies the title bar caption to display.</param>
+        /// <param name="yesButtonText">A System.String that specifies the text to display within the Yes button.</param>
+        /// <param name="noButtonText">A System.String that specifies the text to display within the No button.</param>
+        /// <param name="cancelButtonText">A System.String that specifies the text to display within the Cancel button.</param>
+        /// <returns>A System.Windows.MessageBoxResult value that specifies which message box button is clicked by the user.</returns>
+        public static MessageBoxResult ShowYesNoCancel(Window owner, string messageBoxText, string caption, string yesButtonText, string noButtonText, string cancelButtonText)
+        {
+            return ShowYesNoMessage(owner, messageBoxText, caption, yesButtonText, noButtonText, cancelButtonText, null);
         }
 
         /// <summary>
@@ -254,7 +353,73 @@ namespace WPFCustomMessageBox
         /// <returns>A System.Windows.MessageBoxResult value that specifies which message box button is clicked by the user.</returns>
         public static MessageBoxResult ShowYesNoCancel(string messageBoxText, string caption, string yesButtonText, string noButtonText, string cancelButtonText, MessageBoxImage icon)
         {
-            CustomMessageBoxWindow msg = new CustomMessageBoxWindow(messageBoxText, caption, MessageBoxButton.YesNoCancel, icon);
+            return ShowYesNoMessage(null, messageBoxText, caption, yesButtonText, noButtonText, cancelButtonText, icon);
+        }
+
+        /// <summary>
+        /// Displays a message box that has a message, caption, Yes/No/Cancel buttons with custom System.String values for the buttons' text, and icon;
+        /// and that returns a result.
+        /// </summary>
+        /// <param name="owner">A System.Windows.Window that represents the owner window of the message box.</param>
+        /// <param name="messageBoxText">A System.String that specifies the text to display.</param>
+        /// <param name="caption">A System.String that specifies the title bar caption to display.</param>
+        /// <param name="yesButtonText">A System.String that specifies the text to display within the Yes button.</param>
+        /// <param name="noButtonText">A System.String that specifies the text to display within the No button.</param>
+        /// <param name="cancelButtonText">A System.String that specifies the text to display within the Cancel button.</param>
+        /// <param name="icon">A System.Windows.MessageBoxImage value that specifies the icon to display.</param>
+        /// <returns>A System.Windows.MessageBoxResult value that specifies which message box button is clicked by the user.</returns>
+        public static MessageBoxResult ShowYesNoCancel(Window owner, string messageBoxText, string caption, string yesButtonText, string noButtonText, string cancelButtonText, MessageBoxImage icon)
+        {
+            return ShowYesNoMessage(owner, messageBoxText, caption, yesButtonText, noButtonText, cancelButtonText, icon);
+        }
+
+
+        /// <summary>
+        /// Displays a message box that has a message, caption, OK/Cancel buttons with custom System.String values for the buttons' text, and icon;
+        /// and that returns a result.
+        /// </summary>
+        /// <param name="owner">A System.Windows.Window that represents the owner window of the message box.</param>
+        /// <param name="messageBoxText">A System.String that specifies the text to display.</param>
+        /// <param name="caption">A System.String that specifies the title bar caption to display.</param>
+        /// <param name="okButtonText">A System.String that specifies the text to display within the OK button.</param>
+        /// <param name="cancelButtonText">A System.String that specifies the text to display within the Cancel button.</param>
+        /// <param name="icon">A System.Windows.MessageBoxImage value that specifies the icon to display.</param>
+        /// <returns>A System.Windows.MessageBoxResult value that specifies which message box button is clicked by the user.</returns>
+        private static MessageBoxResult ShowOKMessage(Window owner, string messageBoxText, string caption, string okButtonText, string cancelButtonText, MessageBoxImage? icon)
+        {
+            MessageBoxButton buttonLayout = string.IsNullOrEmpty(cancelButtonText) ? MessageBoxButton.OK : MessageBoxButton.OKCancel;
+
+            CustomMessageBoxWindow msg = icon.HasValue ? new CustomMessageBoxWindow(messageBoxText, caption, buttonLayout, icon.Value) : new CustomMessageBoxWindow(messageBoxText, caption, buttonLayout);
+            if (owner != null)
+                msg.Owner = owner;
+            msg.OkButtonText = okButtonText;
+            msg.CancelButtonText = cancelButtonText;
+
+            msg.ShowDialog();
+
+            return msg.Result;
+        }
+
+
+        /// <summary>
+        /// Displays a message box that has a message, caption, Yes/No/Cancel buttons with custom System.String values for the buttons' text, and icon;
+        /// and that returns a result.
+        /// </summary>
+        /// <param name="owner">A System.Windows.Window that represents the owner window of the message box.</param>
+        /// <param name="messageBoxText">A System.String that specifies the text to display.</param>
+        /// <param name="caption">A System.String that specifies the title bar caption to display.</param>
+        /// <param name="yesButtonText">A System.String that specifies the text to display within the Yes button.</param>
+        /// <param name="noButtonText">A System.String that specifies the text to display within the No button.</param>
+        /// <param name="cancelButtonText">A System.String that specifies the text to display within the Cancel button.</param>
+        /// <param name="icon">A System.Windows.MessageBoxImage value that specifies the icon to display.</param>
+        /// <returns>A System.Windows.MessageBoxResult value that specifies which message box button is clicked by the user.</returns>
+        private static MessageBoxResult ShowYesNoMessage(Window owner, string messageBoxText, string caption, string yesButtonText, string noButtonText, string cancelButtonText, MessageBoxImage? icon)
+        {
+            MessageBoxButton buttonLayout = string.IsNullOrEmpty(cancelButtonText) ? MessageBoxButton.YesNo : MessageBoxButton.YesNoCancel;
+
+            CustomMessageBoxWindow msg = icon.HasValue ? new CustomMessageBoxWindow(messageBoxText, caption, buttonLayout, icon.Value) : new CustomMessageBoxWindow(messageBoxText, caption, buttonLayout);
+            if (owner != null)
+                msg.Owner = owner;
             msg.YesButtonText = yesButtonText;
             msg.NoButtonText = noButtonText;
             msg.CancelButtonText = cancelButtonText;
@@ -263,6 +428,5 @@ namespace WPFCustomMessageBox
 
             return msg.Result;
         }
-
     }
 }

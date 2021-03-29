@@ -16,6 +16,8 @@
         
         <TextBlock Height="33" HorizontalAlignment="Left" Margin="16,29,0,0" Name="textBlock1" FontSize="24" VerticalAlignment="Top" Width="122">Standard</TextBlock>
         <TextBlock FontSize="24" HorizontalAlignment="Left" Margin="271,29,0,0" VerticalAlignment="Top">Custom Version</TextBlock>
-        <Button Content="Custom Text" Height="23" HorizontalAlignment="Left" Margin="271,187,0,0" Name="button1" VerticalAlignment="Top" Width="Auto" Click="button1_Click" />
+        <Button Content="Custom Text" Height="23" HorizontalAlignment="Left" Margin="271,215,0,0" Name="button1" VerticalAlignment="Top" Width="Auto" Click="button1_Click" RenderTransformOrigin="0.502,1.635" />
+        <Button Content="All of Above + Owner" Height="23" HorizontalAlignment="Left" Margin="12,187,0,0" x:Name="button_StandardMessageWithOwner" VerticalAlignment="Top" Width="Auto" Click="button_StandardMessageWithOwner_Click" />
+        <Button Content="All of Above + Owner" Height="23" HorizontalAlignment="Left" Margin="271,187,0,0" x:Name="button_CustomMessageWithOwner" VerticalAlignment="Top" Width="Auto" Click="button_CustomMessageWithOwner_Click" />
     </Grid>
 </Window>

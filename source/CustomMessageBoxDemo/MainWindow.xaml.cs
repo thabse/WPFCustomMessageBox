@@ -75,5 +75,20 @@ namespace CustomMessageBoxDemo
 
             Console.WriteLine(result);
         }
+
+        private void button_StandardMessageWithOwner_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(this,
+                "Are you sure you want to eject the nuclear fuel rods?",
+                "Confirm Fuel Ejection",
+                MessageBoxButton.OKCancel,
+                MessageBoxImage.Exclamation);
+        }
+
+        private void button_CustomMessageWithOwner_Click(object sender, RoutedEventArgs e)
+        {
+            CustomMessageBox.Show(this, "This is a message.", "This is a caption", MessageBoxButton.YesNo, MessageBoxImage.Asterisk);
+
+        }
     }
 }
