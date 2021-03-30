@@ -11,7 +11,7 @@ The WPFCustomMessageBox message boxes return [standard .NET MessageBoxResults](h
 
 ## Downloading and Installing ##
 
-[WPFCustomMessageBox is available via NuGet](https://www.nuget.org/packages/WPFCustomMessageBox/).
+[WPFCustomMessageBox is available via NuGet](https://www.nuget.org/packages/WPFCustomMessageBox.thabse/).
 
 ## Usage ##
 

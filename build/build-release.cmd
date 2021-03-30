@@ -2,7 +2,7 @@
 
 @ECHO OFF
 
-SET msbuild="%ProgramFiles(x86)%\MSBuild\12.0\Bin\msbuild.exe"
+SET msbuild="C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe"
 
 :: delete existing build
 del "..\source\WPFCustomMessageBox\bin\Release\" /q /s

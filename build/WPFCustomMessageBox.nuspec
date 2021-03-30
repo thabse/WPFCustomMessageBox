@@ -5,7 +5,9 @@
         <version>1.0.8</version>
         <title>WPF Custom MessageBox</title>
         <authors>Thomas Absenger / Evan Wondrasek / Apricity Software LLC</authors>
-        <licenseUrl>https://github.com/thabse/WPFCustomMessageBox/blob/master/LICENSE</licenseUrl>
+        <license type="expression">MIT</license>
+        <repository type="git" url="https://github.com/thabse/WPFCustomMessageBox.git" branch="master" />
+        <projectUrl>https://github.com/thabse/WPFCustomMessageBox</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>A WPF clone of the native Windows/.NET MessageBox with extra features like custom button text.</description>
         <summary />
