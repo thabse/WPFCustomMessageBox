@@ -5,7 +5,7 @@
         WindowStartupLocation="CenterOwner"
         WindowStyle="SingleBorderWindow"
         Icon="blankicon.ico"
-        ShowInTaskbar="False" Topmost="True"
+        ShowInTaskbar="False"
         ResizeMode="NoResize" SizeToContent="WidthAndHeight"
         TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="ClearType" UseLayoutRounding="True"
         Title="" MinHeight="155" MaxWidth="470" MinWidth="154">
