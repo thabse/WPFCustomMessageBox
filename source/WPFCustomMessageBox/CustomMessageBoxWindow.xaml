@@ -11,9 +11,9 @@
     <!-- todo: The TextOptions properties above fix a minor blurry image issue, but are only compatible with >= .NET 4.0 -->
 
     <!-- Show a blank image as window icon -->
-    <Window.Icon>
+    <!--<Window.Icon>
         <DrawingImage />
-    </Window.Icon>
+    </Window.Icon>-->
 
     <Grid>
         <Grid.RowDefinitions>
@@ -25,7 +25,7 @@
         <TextBlock Text="{Binding Path=Title,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                    Visibility="Hidden"
                    Height="0"
-                   Margin="80 0 0 0" />
+                   Margin="50 0 0 0" />
 
         <Grid Grid.Row="0" Background="White" MinHeight="69">
             <DockPanel>

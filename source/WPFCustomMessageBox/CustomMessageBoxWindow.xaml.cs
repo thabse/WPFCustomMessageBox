@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows;
 
 namespace WPFCustomMessageBox
@@ -101,6 +102,11 @@ namespace WPFCustomMessageBox
                 DisplayImage(image.Value);
             else
                 Image_MessageBox.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+        protected override void OnSourceInitialized(EventArgs e)
+        {
+            Util.RemoveIcon(this);
         }
 
         private void DisplayButtons(MessageBoxButton button)
