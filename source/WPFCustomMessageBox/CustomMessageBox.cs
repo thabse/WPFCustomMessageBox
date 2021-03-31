@@ -513,9 +513,7 @@ namespace WPFCustomMessageBox
         {
             MessageBoxButton buttonLayout = string.IsNullOrEmpty(cancelButtonText) ? MessageBoxButton.OK : MessageBoxButton.OKCancel;
 
-            CustomMessageBoxWindow msg = icon.HasValue ? new CustomMessageBoxWindow(messageBoxText, caption, buttonLayout, icon.Value) : new CustomMessageBoxWindow(messageBoxText, caption, buttonLayout);
-            if (owner != null)
-                msg.Owner = owner;
+            CustomMessageBoxWindow msg = new CustomMessageBoxWindow(owner, messageBoxText, caption, buttonLayout, icon);
             if (!string.IsNullOrEmpty(okButtonText))
                 msg.OkButtonText = okButtonText;
             if (!string.IsNullOrEmpty(cancelButtonText))
@@ -545,9 +543,7 @@ namespace WPFCustomMessageBox
         {
             MessageBoxButton buttonLayout = string.IsNullOrEmpty(cancelButtonText) ? MessageBoxButton.YesNo : MessageBoxButton.YesNoCancel;
 
-            CustomMessageBoxWindow msg = icon.HasValue ? new CustomMessageBoxWindow(messageBoxText, caption, buttonLayout, icon.Value) : new CustomMessageBoxWindow(messageBoxText, caption, buttonLayout);
-            if (owner != null)
-                msg.Owner = owner;
+            CustomMessageBoxWindow msg = new CustomMessageBoxWindow(owner, messageBoxText, caption, buttonLayout, icon);
             if (!string.IsNullOrEmpty(yesButtonText))
                 msg.YesButtonText = yesButtonText;
             if (!string.IsNullOrEmpty(noButtonText))

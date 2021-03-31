@@ -82,56 +82,25 @@ namespace WPFCustomMessageBox
 
         public MessageBoxResult Result { get; set; }
 
-        internal CustomMessageBoxWindow(string message)
+        internal CustomMessageBoxWindow(Window owner, string message, string caption = null, MessageBoxButton? button = null, MessageBoxImage? image = null)
         {
             InitializeComponent();
 
-            Message = message;
-            Image_MessageBox.Visibility = System.Windows.Visibility.Collapsed;
-            DisplayButtons(MessageBoxButton.OK);
-        }
-
-        internal CustomMessageBoxWindow(string message, string caption)
-        {
-            InitializeComponent();
+            if (owner != null)
+            {
+                Owner = owner;
+                WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            }
 
             Message = message;
             Caption = caption;
-            Image_MessageBox.Visibility = System.Windows.Visibility.Collapsed;
-            DisplayButtons(MessageBoxButton.OK);
-        }
 
-        internal CustomMessageBoxWindow(string message, string caption, MessageBoxButton button)
-        {
-            InitializeComponent();
+            DisplayButtons(button ?? MessageBoxButton.OK);
 
-            Message = message;
-            Caption = caption;
-            Image_MessageBox.Visibility = System.Windows.Visibility.Collapsed;
-
-            DisplayButtons(button);
-        }
-
-        internal CustomMessageBoxWindow(string message, string caption, MessageBoxImage image)
-        {
-            InitializeComponent();
-
-            Message = message;
-            Caption = caption;
-            DisplayImage(image);
-            DisplayButtons(MessageBoxButton.OK);
-        }
-
-        internal CustomMessageBoxWindow(string message, string caption, MessageBoxButton button, MessageBoxImage image)
-        {
-            InitializeComponent();
-
-            Message = message;
-            Caption = caption;
-            Image_MessageBox.Visibility = System.Windows.Visibility.Collapsed;
-            
-            DisplayButtons(button);
-            DisplayImage(image);
+            if (image.HasValue)
+                DisplayImage(image.Value);
+            else
+                Image_MessageBox.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void DisplayButtons(MessageBoxButton button)
