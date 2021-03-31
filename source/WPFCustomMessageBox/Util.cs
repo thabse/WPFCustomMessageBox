@@ -39,6 +39,9 @@ namespace WPFCustomMessageBox
         /// <returns></returns>
         internal static string TryAddKeyboardAccellerator(this string input)
         {
+            if (input == null)
+                return input;
+
             const string accellerator = "_";            // This is the default WPF accellerator symbol - used to be & in WinForms
 
             // If it already contains an accellerator, do nothing
