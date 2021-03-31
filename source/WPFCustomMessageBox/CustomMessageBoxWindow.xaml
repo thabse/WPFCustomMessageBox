@@ -4,17 +4,29 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         WindowStartupLocation="CenterOwner"
         WindowStyle="SingleBorderWindow"
-        Icon="blankicon.ico"
         ShowInTaskbar="False"
         ResizeMode="NoResize" SizeToContent="WidthAndHeight"
         TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="ClearType" UseLayoutRounding="True"
         Title="" MinHeight="155" MaxWidth="470" MinWidth="154">
     <!-- todo: The TextOptions properties above fix a minor blurry image issue, but are only compatible with >= .NET 4.0 -->
+
+    <!-- Show a blank image as window icon -->
+    <Window.Icon>
+        <DrawingImage />
+    </Window.Icon>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+
+        <!-- Make the window width fit the title by embedding the title invisibly  -->
+        <TextBlock Text="{Binding Path=Title,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                   Visibility="Hidden"
+                   Height="0"
+                   Margin="80 0 0 0" />
+
         <Grid Grid.Row="0" Background="White" MinHeight="69">
             <DockPanel>
                 <Image Name="Image_MessageBox" Width="32" Height="32" HorizontalAlignment="Left" DockPanel.Dock="Left" Margin="30,0,0,0" Visibility="Collapsed"/>
