@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Interop;
 using WPFCustomMessageBox;
 
 namespace CustomMessageBoxDemo
@@ -90,5 +94,51 @@ namespace CustomMessageBoxDemo
             CustomMessageBox.Show(this, "This is a message.", "This is a caption", MessageBoxButton.YesNo, MessageBoxImage.Asterisk);
 
         }
+        private void button_StandardAutoCloseTest_Click(object sender, RoutedEventArgs e)
+        {
+            var hiddenOwner = CreateAutoCloseWindow(5000);
+            MessageBox.Show(hiddenOwner, "This message will close after 5 seconds.", "I will be gone soon", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void button_AutoCloseTest_Click(object sender, RoutedEventArgs e)
+        {
+            CustomMessageBox.ShowOK(this, "This message will close after 5 seconds.", "I will be gone soon", "OK", MessageBoxImage.Information, 5000);
+        }
+
+        /// <summary>
+        /// Creates a window which closes automatically after <paramref name="timeout"/> milliseconds.
+        /// See https://stackoverflow.com/a/20098381
+        /// </summary>
+        /// <param name="timeout">Close this window after x milliseconds</param>
+        /// <returns>The already opened window</returns>
+        private static Window CreateAutoCloseWindow(int timeout)
+        {
+            Window window = new Window()
+            {
+                WindowStyle = WindowStyle.None,
+                WindowState = WindowState.Maximized,
+                Background = System.Windows.Media.Brushes.Transparent,
+                AllowsTransparency = true,
+                ShowInTaskbar = false,
+                ShowActivated = true,
+                Topmost = true
+            };
+
+            window.Show();
+
+            IntPtr handle = new WindowInteropHelper(window).Handle;
+
+            Task.Delay(timeout).ContinueWith(
+                t => NativeMethods.SendMessage(handle, 0x10 /*WM_CLOSE*/, IntPtr.Zero, IntPtr.Zero), TaskScheduler.FromCurrentSynchronizationContext());
+
+            return window;
+        }
+
+        private static class NativeMethods
+        {
+            [DllImport("user32.dll", CharSet = CharSet.Auto)]
+            public static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
+        }
+
     }
 }
