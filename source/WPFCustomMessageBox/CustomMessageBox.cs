@@ -15,6 +15,12 @@ namespace WPFCustomMessageBox
     public static class CustomMessageBox
     {
         /// <summary>
+        /// Global parameter to enable (true) or disable (false) the removal of the title bar icon.
+        /// If you are using a custom window style, the icon removal may cause issues like displaying two title bar (the default windows one and the custom one). 
+        /// </summary>
+        public static bool RemoveTitleBarIcon = true;
+
+        /// <summary>
         /// Displays a message box that has a message and returns a result.
         /// </summary>
         /// <param name="messageBoxText">A System.String that specifies the text to display.</param>
@@ -513,7 +519,7 @@ namespace WPFCustomMessageBox
         {
             MessageBoxButton buttonLayout = string.IsNullOrEmpty(cancelButtonText) ? MessageBoxButton.OK : MessageBoxButton.OKCancel;
 
-            CustomMessageBoxWindow msg = new CustomMessageBoxWindow(owner, messageBoxText, caption, buttonLayout, icon);
+            CustomMessageBoxWindow msg = new CustomMessageBoxWindow(owner, messageBoxText, caption, buttonLayout, icon, RemoveTitleBarIcon);
             if (!string.IsNullOrEmpty(okButtonText))
                 msg.OkButtonText = okButtonText;
             if (!string.IsNullOrEmpty(cancelButtonText))
@@ -543,7 +549,7 @@ namespace WPFCustomMessageBox
         {
             MessageBoxButton buttonLayout = string.IsNullOrEmpty(cancelButtonText) ? MessageBoxButton.YesNo : MessageBoxButton.YesNoCancel;
 
-            CustomMessageBoxWindow msg = new CustomMessageBoxWindow(owner, messageBoxText, caption, buttonLayout, icon);
+            CustomMessageBoxWindow msg = new CustomMessageBoxWindow(owner, messageBoxText, caption, buttonLayout, icon, RemoveTitleBarIcon);
             if (!string.IsNullOrEmpty(yesButtonText))
                 msg.YesButtonText = yesButtonText;
             if (!string.IsNullOrEmpty(noButtonText))

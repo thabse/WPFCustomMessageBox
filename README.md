@@ -21,6 +21,7 @@ WPFCustomMessageBox uses static methods just like the standard .NET MessageBox, 
 
 Note that when providing a `System.Windows.Window` owner for a message box, the behavior of this message box is not identical to the standard .NET MessageBox. The standard MessageBox will open `CenterScreen`, while this custom version opens with `CenterOwner` ([Window Startup Locations](https://docs.microsoft.com/en-us/dotnet/api/system.windows.window.windowstartuplocation)).
 
+
 **Standard .NET Message Box**
 
 
@@ -77,6 +78,14 @@ CustomMessageBox.ShowYesNo(
     System.Windows.MessageBoxResult.No);
 ```
 
+**Issue: Multiple Title Bars**
+
+To hide the title bar icon (to remove an unnecessary margin in the title bar), the Win32API is used. If you are using custom window styles in your project, this may lead to multiple title bars being displayed. You can disable this feature globally by setting the following variable:
+
+
+```csharp
+CustomMessageBox.RemoveTitleBarIcon = false;
+```
 ## Todo ##
 
 * i18n support (especially for languages that read right-to-left)

@@ -9,6 +9,8 @@ namespace WPFCustomMessageBox
     /// </summary>
     internal partial class CustomMessageBoxWindow : Window
     {
+        private bool _removeTitleBarIcon = true;
+
         internal string Caption
         {
             get
@@ -83,9 +85,11 @@ namespace WPFCustomMessageBox
 
         public MessageBoxResult Result { get; set; }
 
-        internal CustomMessageBoxWindow(Window owner, string message, string caption = null, MessageBoxButton? button = null, MessageBoxImage? image = null)
+        internal CustomMessageBoxWindow(Window owner, string message, string caption = null, MessageBoxButton? button = null, MessageBoxImage? image = null, bool removeTitleBarIcon = true)
         {
             InitializeComponent();
+
+            _removeTitleBarIcon = removeTitleBarIcon;
 
             if (owner != null)
             {
@@ -106,7 +110,8 @@ namespace WPFCustomMessageBox
 
         protected override void OnSourceInitialized(EventArgs e)
         {
-            Util.RemoveIcon(this);
+            if (_removeTitleBarIcon)
+                Util.RemoveIcon(this);
         }
 
         private void DisplayButtons(MessageBoxButton button)

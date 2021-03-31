@@ -2,16 +2,16 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>WPFCustomMessageBox.thabse</id>
-        <version>1.1.0</version>
+        <version>1.1.1</version>
         <title>WPF Custom MessageBox</title>
         <authors>Thomas Absenger / Evan Wondrasek / Apricity Software LLC</authors>
         <license type="expression">MIT</license>
         <repository type="git" url="https://github.com/thabse/WPFCustomMessageBox.git" branch="master" />
         <projectUrl>https://github.com/thabse/WPFCustomMessageBox</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>A WPF clone of the native Windows/.NET MessageBox with extra features like custom button text.</description>
+        <description>A WPF clone of the native Windows/.NET MessageBox with extra features like custom button text and automatically closing messages.</description>
         <summary />
-        <releaseNotes>Extended with window owner</releaseNotes>
+        <releaseNotes>For release notes see: https://github.com/thabse/WPFCustomMessageBox/releases</releaseNotes>
         <copyright>Thomas Absenger / Evan Wondrasek / Apricity Software LLC</copyright>
         <language>en-US</language>
         <tags>wpf messagebox</tags>
