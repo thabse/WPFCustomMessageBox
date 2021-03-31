@@ -112,6 +112,8 @@ namespace WPFCustomMessageBox
         {
             if (_removeTitleBarIcon)
                 Util.RemoveIcon(this);
+
+            base.OnSourceInitialized(e);
         }
 
         private void DisplayButtons(MessageBoxButton button)
