@@ -1,7 +1,7 @@
 WPFCustomMessageBox
 =====================
 
-*WPFCustomMessageBox* is a WPF clone of the native Windows/.NET MessageBox with extra features like custom button text.
+*WPFCustomMessageBox* is a WPF clone of the native Windows/.NET MessageBox with extra features like custom button text and automatically closing messages.
 
 ![WPFCustomMessageBox example screenshot](http://i.stack.imgur.com/AQgEj.png)
 
@@ -19,7 +19,7 @@ This documentation is still in progress, so in the meantime you can explore the 
 
 WPFCustomMessageBox uses static methods just like the standard .NET MessageBox, so you can plug-and-play the new library without modifying any code. When you want to add custom text, just use the special methods outlined below.
 
-Note that when providing a `System.Windows.Window` owner for a message box, the behavior of this message box is not identical to the standard .NET MessageBox.
+Note that when providing a `System.Windows.Window` owner for a message box, the behavior of this message box is not identical to the standard .NET MessageBox. The standard MessageBox will open `CenterScreen`, while this custom version opens with `CenterOwner` ([Window Startup Locations](https://docs.microsoft.com/en-us/dotnet/api/system.windows.window.windowstartuplocation)).
 
 **Standard .NET Message Box**
 
@@ -58,6 +58,24 @@ The WPFCustomMessageBox library provides customizable equivalents of all .NET Me
 * `CustomMessageBox.ShowOKCancel()` - MessageBox with customizable "OK" and "Cancel" buttons. Returns either `MessageBoxResult.OK` or `MessageBoxResult.Cancel`.
 * `CustomMessageBox.ShowYesNo()` - MessageBox with customizable "Yes" and "No" buttons. Returns either `MessageBoxResult.Yes` or `MessageBoxResult.No`.
 * `CustomMessageBox.ShowYesNoCancel()` - MessageBox with customizable "Yes", "No", and "Cancel" buttons. Returns either `MessageBoxResult.Yes`, `MessageBoxResult.No`, or `MessageBoxResult.Cancel`.
+
+**Automatically closing Message Boxes**
+
+The WPFCustomMessageBox supports message boxes which close automatically after a customizable amount of time. By default a message box which closes automatically will have the `MessageBoxResult.None`
+result. Each `CustomMessageBox.Show*` call has the optional paramaters `int? timeout` and `MessageBoxResult? timeoutResult`, specifying the timeout in milliseconds and the result in case the timeout
+occurs before the user selects an action.
+
+```csharp
+using WPFCustomMessageBox;
+
+CustomMessageBox.ShowYesNo(
+    "You have won 1000 moneys! You have 10 seconds to claim your price!",
+    "You Are the Winner!",
+    "Give me the money!",
+    "No, thanks!",
+    10000,
+    System.Windows.MessageBoxResult.No);
+```
 
 ## Todo ##
 
