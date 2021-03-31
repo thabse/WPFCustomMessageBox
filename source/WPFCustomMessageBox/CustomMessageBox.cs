@@ -566,7 +566,7 @@ namespace WPFCustomMessageBox
         {
             if (timeout.HasValue && timeout.Value <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(timeout), string.Format("Timeout must be greater than 0."));
+                throw new ArgumentOutOfRangeException("timeout", string.Format("Timeout must be greater than 0."));
             }
 
             if (timeout.HasValue)
